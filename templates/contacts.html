@@ -1,0 +1,17 @@
+<<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+  <h1> Contacts List </h1>
+  {% for i in contacts %}
+  Name: {{i["properties"]["firstname"]["value"]}} {{i["properties"]["lastname"]["value"]}}<br/>
+  Company: {{i["properties"]["company"]["value"]}}<br/>
+  Email: {{i["identity-profiles"][0]["identities"][0]["value"]}}<br/><hr/>
+  {% endfor %}
+
+
+  </body>
+</html>
