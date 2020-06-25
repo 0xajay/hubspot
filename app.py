@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, render_template, redirect, url_for
 from functions.get_contacts import get_contacts
 from functions.post_contact import post_contact
-
+from functions.send_sms import send_sms
 
 app = Flask(__name__)
 
@@ -25,6 +25,21 @@ def operate_contacts():
         return redirect(url_for('operate_contacts'))
     else:
         return "Method not allowed"
+
+@app.route("/sms", methods=["GET"])
+def sms_index():
+    if request.method == 'GET':
+        return render_template("sms.html")
+
+@app.route("/send-sms", methods=["POST"])
+def sms():
+    if request.method == 'POST':
+        req = request.form
+        result = send_sms(req)
+        return redirect(url_for('operate_contacts'))
+    else:
+        return "Method Not Allowed"
+
 
 
 
